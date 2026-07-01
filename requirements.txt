@@ -1,4 +1,4 @@
 numpy version: 2.4.4
 pandas version: 3.0.2
-Scikit-Learn version: 1.9.0
-Streamlit version: 1.58.0
+sklearn version: 1.9.0
+streamlit version: 1.58.0
