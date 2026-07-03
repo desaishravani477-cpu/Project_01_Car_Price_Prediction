@@ -16,88 +16,173 @@ st.set_page_config(
 # ---------------------- CUSTOM CSS ----------------------
 st.markdown("""
 <style>
-    /* Overall background */
-    .stApp {
-        background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    html, body, [class*="css"] {
+        font-family: 'Roboto', 'Segoe UI', sans-serif;
     }
 
-    /* Title styling */
-    .main-title {
+    /* Overall background - clean white/light gray */
+    .stApp {
+        background-color: #f8f9fa;
+    }
+
+    /* Header bar */
+    .header-bar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 18px 0 16px 0;
+        margin-bottom: 25px;
         text-align: center;
-        font-size: 42px;
-        font-weight: 800;
-        color: #ffffff;
-        padding-bottom: 0px;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    }
+    .main-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #202124;
+        margin: 0;
+    }
+    .main-title span {
+        color: #1a73e8;
     }
     .sub-title {
-        text-align: center;
-        font-size: 16px;
-        color: #f0f0f0;
-        margin-top: -10px;
-        margin-bottom: 25px;
-    }
-
-    /* Card container for results */
-    .result-card {
-        background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(10px);
-        border-radius: 18px;
-        padding: 25px;
-        margin-top: 15px;
-        border: 1px solid rgba(255,255,255,0.25);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    }
-
-    .price-tag {
-        text-align: center;
-        font-size: 40px;
-        font-weight: 900;
-        color: #00e676;
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-    }
-
-    .info-row {
-        display: flex;
-        justify-content: space-between;
-        color: #ffffff;
-        font-size: 15px;
-        padding: 4px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.15);
+        font-size: 14px;
+        color: #5f6368;
+        margin-top: 4px;
     }
 
     /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+        background-color: #ffffff;
+        border-right: 1px solid #e0e0e0;
     }
     section[data-testid="stSidebar"] * {
-        color: #ffffff !important;
+        color: #202124 !important;
+    }
+    .sidebar-heading {
+        font-size: 15px;
+        font-weight: 700;
+        color: #202124 !important;
+        margin-bottom: 2px;
+    }
+    .sidebar-caption {
+        font-size: 12px;
+        color: #5f6368 !important;
+        margin-bottom: 14px;
     }
 
-    /* Predict button */
+    /* Input fields */
+    div[data-baseweb="select"] > div,
+    .stNumberInput input,
+    .stTextInput input {
+        background-color: #ffffff !important;
+        color: #202124 !important;
+        border: 1px solid #dadce0 !important;
+        border-radius: 6px !important;
+    }
+    div[data-baseweb="select"] span {
+        color: #202124 !important;
+    }
+    ul[data-testid="stVirtualDropdown"] li {
+        background-color: #ffffff !important;
+        color: #202124 !important;
+    }
+    ul[data-testid="stVirtualDropdown"] li:hover {
+        background-color: #e8f0fe !important;
+    }
+
+    /* Radio buttons accent */
+    input[type="radio"] {
+        accent-color: #1a73e8 !important;
+    }
+
+    /* Predict button - Google style solid blue */
     div.stButton > button {
         width: 100%;
-        background: linear-gradient(90deg, #ff512f, #dd2476);
-        color: white;
-        font-weight: 700;
-        font-size: 17px;
-        padding: 12px 0;
-        border-radius: 12px;
+        background-color: #1a73e8;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        padding: 10px 8px;
+        border-radius: 6px;
         border: none;
-        transition: 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        white-space: normal;
+        height: auto;
+        line-height: 1.4;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 1px 2px rgba(60,64,67,0.3);
     }
     div.stButton > button:hover {
-        transform: scale(1.03);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-        background: linear-gradient(90deg, #dd2476, #ff512f);
+        background-color: #1765cc;
+        box-shadow: 0 1px 3px rgba(60,64,67,0.45);
+    }
+    div.stButton > button p {
+        font-size: 14px !important;
+        white-space: normal !important;
+    }
+
+    /* Result card */
+    .result-card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 24px 28px;
+        margin-top: 10px;
+        box-shadow: 0 1px 3px rgba(60,64,67,0.15);
+    }
+    .price-label {
+        font-size: 13px;
+        color: #5f6368;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .price-tag {
+        font-size: 36px;
+        font-weight: 700;
+        color: #188038;
+        margin: 4px 0 16px 0;
+    }
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        color: #3c4043;
+        font-size: 14px;
+        padding: 8px 0;
+        border-top: 1px solid #f1f3f4;
+    }
+    .info-row span:first-child {
+        color: #5f6368;
+    }
+    .info-row span:last-child {
+        font-weight: 500;
+    }
+
+    /* Metric cards on landing view */
+    div[data-testid="stMetric"] {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 14px 10px;
+        box-shadow: 0 1px 2px rgba(60,64,67,0.1);
+    }
+
+    /* Footer */
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #80868b;
+        padding: 20px 0 6px 0;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------- HEADER ----------------------
-st.markdown("<div class='main-title'>🚗 Car Price Prediction</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>Get an instant estimated resale value for your car</div>", unsafe_allow_html=True)
+st.markdown("""
+<div class="header-bar">
+    <div class="main-title">🚗 <span>Car</span>Price Predictor</div>
+    <div class="sub-title">Get an instant, data-driven estimate of your car's resale value</div>
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------------- LOAD DATA/MODEL ----------------------
 @st.cache_resource
@@ -115,34 +200,33 @@ companies = sorted(df['company'].unique())
 years = list(range(2027, 1999, -1))
 
 # ---------------------- SIDEBAR INPUTS ----------------------
-st.sidebar.markdown("## 🔧 Car Details")
-st.sidebar.markdown("Fill in the details below to get a price estimate.")
-st.sidebar.markdown("---")
+st.sidebar.markdown('<div class="sidebar-heading">Car Details</div>', unsafe_allow_html=True)
+st.sidebar.markdown('<div class="sidebar-caption">Fill in the details to get a price estimate</div>', unsafe_allow_html=True)
 
-company = st.sidebar.selectbox('🏢 Select Company', companies)
+company = st.sidebar.selectbox('Company', companies)
 names = sorted(df[df['company'] == company]['name'].unique())
-name = st.sidebar.selectbox('🚘 Select Model', names)
-year = st.sidebar.selectbox('📅 Purchase Year', years)
+name = st.sidebar.selectbox('Model', names)
+year = st.sidebar.selectbox('Purchase Year', years)
 kms_driven = st.sidebar.number_input(
-    '🛣️ Kilometers Driven',
+    'Kilometers Driven',
     value=5000, min_value=1000, max_value=200000, step=1000
 )
-fuel_type = st.sidebar.radio('⛽ Fuel Type', ['Petrol', 'Diesel'], horizontal=True)
+fuel_type = st.sidebar.radio('Fuel Type', ['Petrol', 'Diesel'], horizontal=True)
 
-st.sidebar.markdown("---")
-predict_btn = st.sidebar.button('🔮 Predict Price')
+st.sidebar.markdown("<br>", unsafe_allow_html=True)
+predict_btn = st.sidebar.button('Predict Price')
 
 # ---------------------- MAIN CONTENT ----------------------
 if not predict_btn:
-    st.info("👈 Choose your car's details in the sidebar and click **Predict Price** to see the estimate.")
+    st.info("Choose your car's details in the sidebar, then click **Predict Price** to see the estimate.")
     col1, col2, col3 = st.columns(3)
     col1.metric("Cars in Database", f"{len(df):,}")
     col2.metric("Companies Listed", f"{len(companies)}")
     col3.metric("Models Available", f"{df['name'].nunique()}")
 
 else:
-    with st.spinner('Crunching the numbers... 🔧'):
-        time.sleep(0.8)
+    with st.spinner('Calculating estimate...'):
+        time.sleep(0.6)
 
         myinput = pd.DataFrame(
             data=[[company, name, year, kms_driven, fuel_type]],
@@ -153,27 +237,21 @@ else:
         predicted_price = float(np.array(result).flatten()[0])
 
     if predicted_price < 0:
-        st.error('⚠️ Predicted price came out negative. Please double-check your inputs (e.g. year, kms driven).')
+        st.error('Predicted price came out negative. Please double-check your inputs (e.g. year, kms driven).')
     else:
-        st.balloons()
         st.markdown(f"""
         <div class="result-card">
+            <div class="price-label">Estimated Resale Value</div>
             <div class="price-tag">₹ {round(predicted_price):,}</div>
-            <p style="text-align:center; color:#dddddd; margin-top:-5px;">Estimated Resale Value</p>
-            <hr style="border-color: rgba(255,255,255,0.2);">
-            <div class="info-row"><span>🏢 Company</span><span>{company}</span></div>
-            <div class="info-row"><span>🚘 Model</span><span>{name}</span></div>
-            <div class="info-row"><span>📅 Year</span><span>{year}</span></div>
-            <div class="info-row"><span>🛣️ Kms Driven</span><span>{kms_driven:,} km</span></div>
-            <div class="info-row"><span>⛽ Fuel Type</span><span>{fuel_type}</span></div>
+            <div class="info-row"><span>Company</span><span>{company}</span></div>
+            <div class="info-row"><span>Model</span><span>{name}</span></div>
+            <div class="info-row"><span>Year</span><span>{year}</span></div>
+            <div class="info-row"><span>Kms Driven</span><span>{kms_driven:,} km</span></div>
+            <div class="info-row"><span>Fuel Type</span><span>{fuel_type}</span></div>
         </div>
         """, unsafe_allow_html=True)
 
-        st.caption("Note: This is a machine-learning based estimate and may vary from actual market price.")
+        st.caption("This is a machine-learning based estimate and may vary from actual market price.")
 
 # ---------------------- FOOTER ----------------------
-st.markdown("<br><hr>", unsafe_allow_html=True)
-st.markdown(
-    "<p style='text-align:center; color:#eeeeee; font-size:13px;'>Made with ❤️ using Streamlit</p>",
-    unsafe_allow_html=True
-)
+st.markdown('<div class="footer">Built with Streamlit</div>', unsafe_allow_html=True)
